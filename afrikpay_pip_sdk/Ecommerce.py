@@ -72,19 +72,76 @@ class Ecommerce:
                 description)
         else:
             print('Invalid provider')
-        
 
-    def deposit():
-        pass
+    def deposit(self):
+        hash = hashlib.md5((str(self.store) + str(self.apiKey)).encode()).hexdigest()
+        params = {
+            'store': self.store,
+            'hash': hash
+        }
+        response = requests.post(url = self.depositUrl, params = params)
+        return response.json()
 
-    def payout():
-        pass
+    def payout(
+        self,
+        provider,
+        reference,
+        amount,
+        purchaseRef = '',
+        description = ''):
 
-    def changeKey():
-        pass
+        if provider == 'mtn_mobilemoney_cm':
+            return self.makePayout(
+                provider,
+                reference,
+                amount,
+                purchaseRef,
+                description)
+        elif provider == 'orange_money_cm':
+            return self.makePayout(
+                provider,
+                reference,
+                amount,
+                purchaseRef,
+                description)
+        elif provider == 'express_union_mobilemoney':
+            return self.makePayout(
+                provider,
+                '237' + reference,
+                amount,
+                purchaseRef,
+                description)
+        elif provider == 'afrikpay':
+            return self.makePayout(
+                provider,
+                '237' + reference,
+                amount,
+                purchaseRef,
+                description)
+        else:
+            print('Invalid provider')
 
-    def transactionStatus():
-        pass
+    def changeKey(self):
+        hash = hashlib.md5((str(self.store) + str(self.apiKey)).encode()).hexdigest()
+        params = {
+            'store': self.store,
+            'hash': hash
+        }
+        response = requests.post(url = self.changeKeyUrl, params = params)
+        return response.json()
+
+    def transactionStatus(
+        self,
+        purchaseRef):
+
+        hash = hashlib.md5((str(purchaseRef) + str(self.apiKey)).encode()).hexdigest()
+        params = {
+            'purchaseref': purchaseRef,
+            'store': self.store,
+            'hash': hash
+        }
+        response = requests.post(url = self.transactionStatusUrl, params = params)
+        return response.json()
 
     def makePayment(
         self,
@@ -115,8 +172,28 @@ class Ecommerce:
         response = requests.post(url = self.collectUrl, params = params)
         return response.json()
 
-    def makePayout():
-        pass
+    def makePayout(
+        self,
+        provider,
+        reference,
+        amount,
+        purchaseRef = '',
+        description = ''):
+
+        hash = hashlib.md5((str(provider) + str(reference) + str(amount) + str(self.apiKey)).encode()).hexdigest()
+        password = hashlib.md5((str(self.secretCode)).encode()).hexdigest()
+        params = {
+            'provider': provider,
+            'reference': reference,
+            'amount': amount,
+            'description': description,
+            'purchaseref': purchaseRef,
+            'store': self.store,
+            'hash': hash,
+            'password': password
+        }
+        response = requests.post(url = self.payoutUrl, params = params)
+        return response.json()
 
     def __repr__(self):
         return str(self.store + " - " + self.apiKey)

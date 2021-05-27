@@ -1,4 +1,7 @@
-import requests
+import requests, hashlib
 
 class Money:
-    pass
+    def __init__(self):
+        pass
+
+    
