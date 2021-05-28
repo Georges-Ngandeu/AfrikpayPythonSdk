@@ -7,10 +7,10 @@ VERSION = '0.0.2'
 PACKAGE_NAME = 'afrikpay_pip_sdk'
 AUTHOR = 'Georges Ngandeu'
 AUTHOR_EMAIL = 'georgesngandeu@gmail.com'
-URL = 'https://github.com/Georges-Ngandeu/HelloPython'
+URL = 'https://github.com/Georges-Ngandeu/AfrikpayPythonSdk'
 
 LICENSE = 'Apache License 2.0'
-DESCRIPTION = 'A simple package that prints hello wolrd'
+DESCRIPTION = 'A library to facilitate Afrikpay api integration'
 LONG_DESCRIPTION = (HERE / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
 
