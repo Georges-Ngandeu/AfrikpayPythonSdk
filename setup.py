@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.0.2'
+VERSION = '0.0.3'
 PACKAGE_NAME = 'afrikpay_pip_sdk'
 AUTHOR = 'Georges Ngandeu'
 AUTHOR_EMAIL = 'georgesngandeu@gmail.com'
@@ -15,7 +15,9 @@ LONG_DESCRIPTION = (HERE / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
 
 INSTALL_REQUIRES = [
+    'requests'
 ]
+
 
 setup(name=PACKAGE_NAME,
     version=VERSION,

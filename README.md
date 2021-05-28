@@ -59,6 +59,7 @@ response = ecommerce.collect(
   4000,
   '123456'
 )
+print(response)
 
 # ecommerce payment with orange
 # response = ecommerce.collect(
@@ -67,19 +68,14 @@ response = ecommerce.collect(
 #     400,
 #     0000
 # )
-
-# ecommerce withdrawal with orange
-# response = ecommerce.payout(
-#     'orange_money_cm',
-#     '699999999',
-#     400
-# )
+#print(response)
 
 #response = ecommerce.deposit()
 #print(response)
 
 # change ecommerce apikey
 #response = ecommerce.changeKey()
+#print(response)
 
 # get ecommerce transaction status
 #response = ecommerce.transactionStatus('128_1622044090')
